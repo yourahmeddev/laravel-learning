@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -48,3 +49,5 @@ Route::get('trainer/{name}', function ($name) {
 Route::get('test', function(){
 return view('master-test');
 });
+// opening blade file in laravel from controller
+Route::get('/users/{name}', [UserController::class, 'index']);
