@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,3 +52,13 @@ return view('master-test');
 });
 // opening blade file in laravel from controller
 Route::get('/users/{name}', [UserController::class, 'index']);
+// how to add data in database using laravel model
+Route::get('/insert', function(){
+Post::create([
+    'title'=>'First Post in Laravel',
+    'description'=>'First Post Description',
+    'is_active'=>false,
+    'is_publish'=>false
+]);
+return 'Data Inserting Successfully';
+});
