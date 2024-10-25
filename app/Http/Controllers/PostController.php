@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //listing all posts in table
+        $posts = Post::all();
+        return $posts;
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
@@ -55,10 +56,42 @@ Route::get('/users/{name}', [UserController::class, 'index']);
 // how to add data in database using laravel model
 Route::get('/insert', function(){
 Post::create([
-    'title'=>'First Post in Laravel',
-    'description'=>'First Post Description',
+    'title'=>'Fourth Post in Laravel',
+    'description'=>'Fourth Post Description',
     'is_active'=>false,
-    'is_publish'=>false
+    'is_publish'=>true
 ]);
 return 'Data Inserting Successfully';
 });
+// how to get data from datbase using ORM
+Route::get('/getData', function(){
+    // when we want to get all data from table
+$posts = Post::all();
+// when we want to get specific row we can use this
+$post = Post::where('title','Fourth Post in Laravel')->get();
+return $post;
+});
+// how to update the data in database
+Route::get('/update', function(){
+$post = Post::findOrFail(1);
+$post->update([
+    'title'=>'First New Updated Post in Laravel Updated',
+    'description'=>'First New Updated Post Description in Laravel Updated',
+    'is_active'=>true,
+    'is_publish'=>true
+]);
+return 'Data Updated Successfully';
+});
+// how to delete the data in database using ORM
+Route::get('/delete', function(){
+    $post = Post::findOrFail(1);
+    if(!$post){
+        abort(404);
+    }else{
+
+        $post->delete();
+    }
+    return 'Post Deleted Successfully';
+});
+// creating the resource route for the table
+Route::resource('posts', PostController::class);
