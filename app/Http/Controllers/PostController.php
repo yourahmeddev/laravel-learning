@@ -22,7 +22,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        // opening create file
+        return view('posts.create');
     }
 
     /**
@@ -30,7 +31,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //storing data in database now
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'is_publish'=>'required',
+            'is_active'=>'required'
+        ]);
+        Post::create([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'is_publish'=>$request->is_publish,
+            'is_active'=>$request->is_active
+        ]);
+        $request->session()->flash('alert-success', 'Post Saved Successfully');
+        return to_route('posts.create');
     }
 
     /**
