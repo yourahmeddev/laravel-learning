@@ -12,9 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //listing all posts in table
-        $posts = Post::all();
-        return $posts;
+        //listing all posts in tabl
+        $posts = Post::paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -47,7 +47,6 @@ class PostController extends Controller
         $request->session()->flash('alert-success', 'Post Saved Successfully');
         return to_route('posts.create');
     }
-
     /**
      * Display the specified resource.
      */

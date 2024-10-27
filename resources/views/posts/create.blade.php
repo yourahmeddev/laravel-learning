@@ -30,7 +30,7 @@
                                 {{-- showing success message on new post creation start --}}
                                 @if (Session::has('alert-success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>{{ session::get('alert-success') }}</strong>
+                                    <strong>Success</strong>{{ session::get('alert-success') }}
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                   </div>
                                   @endif
