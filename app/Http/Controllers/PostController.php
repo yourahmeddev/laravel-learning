@@ -52,7 +52,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //showing indiviual post data
+        $post = Post::findOrFail($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -60,7 +62,9 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // edit the data of post from database
+        $post = Post::findOrFail($id);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -68,7 +72,23 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'is_publish'=>'required',
+            'is_active'=>'required'
+        ]);
+        //updating data from database
+        $post = Post::findOrFail($id);
+        $post->update([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'is_publish'=>$request->is_publish,
+            'is_active'=>$request->is_active
+        ]);
+        $request->session()->flash('alert-info', 'Post Updated Sucessfully');
+
+        return to_route('posts.index');
     }
 
     /**

@@ -36,14 +36,14 @@
                         <tr>
                             <th scope="row">{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->description }}</td>
+                            <td>{{ Str::limit($post->description, 10, '...') }}</td>
                             <td>{{ $post->is_active == 1 ? 'Yes' : 'No' }}</td>
                             <td>{{ $post->is_publish == 1 ?  'Yes' : 'No' }}</td>
                             <td class="text-center">
-                                <a href="" class="btn btn-warning d-inline-block">
+                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-warning d-inline-block">
                                     <i class="far fa-eye"></i>
                                 </a>
-                                <a href="" class="btn btn-primary d-inline-block">
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary d-inline-block">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <form action="" class="d-inline-block">
