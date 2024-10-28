@@ -46,7 +46,9 @@
                                 <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary d-inline-block">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="" class="d-inline-block">
+                                <form action="{{ route('posts.destroy', $post->id) }}" class="d-inline-block" method="POST">
+                                    @method('DELETE')
+                                    @csrf
                                     <button class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </button>
