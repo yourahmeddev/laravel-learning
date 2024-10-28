@@ -44,8 +44,8 @@ class PostController extends Controller
             'is_publish'=>$request->is_publish,
             'is_active'=>$request->is_active
         ]);
-        $request->session()->flash('alert-success', 'Post Saved Successfully');
-        return to_route('posts.create');
+        $request->session()->flash('alert-success', 'Post Created Successfully');
+        return to_route('posts.index');
     }
     /**
      * Display the specified resource.
@@ -94,12 +94,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         //delete the post
         $post = Post::findOrFail($id);
         $post->delete();
-        request()->session()->flash('alert-danger', 'Post Deleted Sucessfully');
+        $request->session()->flash('alert-danger', 'Post Deleted Sucessfully');
         return to_route('posts.index');
     }
 }
