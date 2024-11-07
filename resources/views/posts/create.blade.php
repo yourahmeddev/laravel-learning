@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/parsley.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/summernote-bs5.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -64,10 +64,10 @@
     {{-- adding create new post end --}}
     <script src="{{ asset('assets/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('assets/parsley.min.js') }}"></script>
-    <script src="{{ asset('assets/summernote-bs5.js') }}"></script>
     <script>
         $('#create-post').parsley();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function(){
             $('#description').summernote(

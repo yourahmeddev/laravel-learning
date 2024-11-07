@@ -51,6 +51,12 @@
                                             class="btn btn-primary d-inline-block">
                                             <i class="fas fa-edit"></i>
                                         </a>
+                                        @if ($post->trashed())
+                                            <a href="{{ route('posts.soft-delete', $post->id) }}"
+                                                class="btn btn-dark d-inline-block">
+                                                <i class="fas fa-undo"></i>
+                                            </a>
+                                        @endif
                                         <form action="{{ route('posts.destroy', $post->id) }}" class="d-inline-block"
                                             method="POST">
                                             @method('DELETE')
@@ -81,21 +87,21 @@
     </script>
     <script>
         toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-bottom-right",
-  "preventDuplicates": true,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
     </script>
     <script>
         @if (Session::has('alert-success'))
@@ -106,6 +112,9 @@
         @endif
         @if (Session::has('alert-danger'))
             toastr["error"]("{{ session::get('alert-danger') }}")
+        @endif
+        @if (Session::has('alert-message'))
+            toastr["info"]("{{ session::get('alert-message') }}")
         @endif
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

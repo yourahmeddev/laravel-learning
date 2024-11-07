@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -95,3 +96,15 @@ Route::get('/delete', function(){
 });
 // creating the resource route for the table
 Route::resource('posts', PostController::class);
+// adding routes for undo posts in laravel
+Route::get('posts/soft-delete/{id}', [PostController::class, 'softDelete'])->name('posts.soft-delete');
+Route::get('QueryBuilder', [PostController::class, 'QueryBuilder'])->name('posts.queryBuilder');
+//one to one relation in laravel
+Route::get('one-to-one', function(){
+    $user = User::first();
+    return $user->Post;
+});
+Route::get('one-to-one-belongs-to', function(){
+    $post = Post::first();
+    return $post->User;
+});

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('title');
-            $table->longText('description');
-            $table->boolean('is_active');
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            //adding soft delete column into table posts
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::table('posts', function (Blueprint $table) {
+            //removing the  soft delete column from table posts
+            $table->dropSoftDeletes();
+        });
     }
 };

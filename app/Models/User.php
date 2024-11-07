@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // defining the relationship
+    public function Post(){
+        return $this->hasOne(Post::class, 'user_id', 'id');
+    }
 }
