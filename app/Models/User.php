@@ -47,6 +47,9 @@ class User extends Authenticatable
     }
     // defining the relationship
     public function Post(){
-        return $this->hasOne(Post::class, 'user_id', 'id');
+        return $this->hasOne(Post::class, 'user_id', 'id')->where('title', 'Test')->withDefault(['name'=>'No Posts Found Against this user']);
+    }
+    public function Posts(){
+        return $this->hasMany(Post::class);
     }
 }
